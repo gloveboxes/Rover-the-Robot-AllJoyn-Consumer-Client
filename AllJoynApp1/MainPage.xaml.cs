@@ -20,7 +20,7 @@ using System.Threading.Tasks;
 
 // see https://channel9.msdn.com/Blogs/Internet-of-Things-Blog/Using-the-AllJoyn--Studio-Extension
 
-namespace AllJoynMaker
+namespace RoverAllJoyn
 {
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
@@ -52,6 +52,7 @@ namespace AllJoynMaker
                 StopButton.IsEnabled = true;
                 LeftButton.IsEnabled = true;
                 RightButton.IsEnabled = true;
+                Autonomous.IsEnabled = true;
             }
         }
 
