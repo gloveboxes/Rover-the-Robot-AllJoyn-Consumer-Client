@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Package xmlns="http://schemas.microsoft.com/appx/manifest/foundation/windows10" xmlns:mp="http://schemas.microsoft.com/appx/2014/phone/manifest" xmlns:uap="http://schemas.microsoft.com/appx/manifest/uap/windows10" IgnorableNamespaces="uap mp">
-  <Identity Name="428ec25d-c1f2-45f9-bf7f-98421d7239aa" Publisher="CN=dglover" Version="1.0.0.0" />
+  <Identity Name="428ec25d-c1f2-45f9-bf7f-98421d7239aa" Publisher="CN=dglover" Version="1.0.2.0" />
   <mp:PhoneIdentity PhoneProductId="428ec25d-c1f2-45f9-bf7f-98421d7239aa" PhonePublisherId="00000000-0000-0000-0000-000000000000" />
   <Properties>
     <DisplayName>AllJoynApp1</DisplayName>
