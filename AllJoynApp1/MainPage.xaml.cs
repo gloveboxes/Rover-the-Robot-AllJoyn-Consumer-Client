@@ -1,20 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
-using Windows.Foundation;
-using Windows.Foundation.Collections;
+﻿using org.alljoyn.example.Rover;
+using System;
+using System.Threading.Tasks;
+using Windows.Devices.AllJoyn;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Controls.Primitives;
-using Windows.UI.Xaml.Data;
-using Windows.UI.Xaml.Input;
-using Windows.UI.Xaml.Media;
-using Windows.UI.Xaml.Navigation;
-using Windows.Devices.AllJoyn;
-using com.glovebox.rover.RPIROBOTAllJoyn.MainInterface;
-using System.Threading.Tasks;
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409
 
@@ -27,22 +16,22 @@ namespace RoverAllJoyn
     /// </summary>
     public sealed partial class MainPage : Page
     {
-        MainInterfaceConsumer makerConsumer = null;
+        RoverConsumer makerConsumer = null;
 
         public MainPage()
         {
             this.InitializeComponent();
 
             AllJoynBusAttachment makerBusAttachment = new AllJoynBusAttachment();
-            MainInterfaceWatcher makerWatcher = new MainInterfaceWatcher(makerBusAttachment);
+            RoverWatcher makerWatcher = new RoverWatcher(makerBusAttachment);
 
             makerWatcher.Added += MakerWatcher_Added;
             makerWatcher.Start();
         }
 
-        private async void MakerWatcher_Added(MainInterfaceWatcher sender, AllJoynServiceInfo args)
+        private async void MakerWatcher_Added(RoverWatcher sender, AllJoynServiceInfo args)
         {
-            MainInterfaceJoinSessionResult joinSessionResult = await MainInterfaceConsumer.JoinSessionAsync(args, sender);
+            RoverJoinSessionResult joinSessionResult = await RoverConsumer.JoinSessionAsync(args, sender);
 
             if (joinSessionResult.Status == AllJoynStatus.Ok)
             {
@@ -86,7 +75,7 @@ namespace RoverAllJoyn
             {
                 if (toggleSwitch.IsOn == true)
                 {
-                    await makerConsumer.AutonomousAsync();
+                    await makerConsumer.AutomaticAsync();
                 }
                 else
                 {

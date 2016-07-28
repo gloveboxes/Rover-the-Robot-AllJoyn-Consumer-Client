@@ -95,7 +95,6 @@
   <ItemGroup>
     <!-- A reference to the entire .Net Framework and Windows SDK are automatically included -->
     <None Include="project.json" />
-    <None Include="Rover AllJoyn Consumer_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App.xaml.cs">
@@ -110,7 +109,6 @@
     <AppxManifest Include="Package.appxmanifest">
       <SubType>Designer</SubType>
     </AppxManifest>
-    <None Include="AllJoynApp1_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Properties\Default.rd.xml" />
@@ -133,9 +131,9 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\com.glovebox.rover.RPIROBOTAllJoyn.MainInterface\com.glovebox.rover.RPIROBOTAllJoyn.MainInterface.vcxproj">
-      <Project>{bf15e59f-c576-407d-96ad-4f0c9e3f07b1}</Project>
-      <Name>com.glovebox.rover.RPIROBOTAllJoyn.MainInterface</Name>
+    <ProjectReference Include="..\RoverLibrary\RoverLibrary.vcxproj">
+      <Project>{555550B3-3157-474A-88F3-60F076E97165}</Project>
+      <Name>RoverLibrary</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
