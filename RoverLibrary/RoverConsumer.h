@@ -41,8 +41,8 @@ public:
     Windows::Foundation::IAsyncOperation<RoverBackwardResult^>^ BackwardAsync();
     // Call the Stop method
     Windows::Foundation::IAsyncOperation<RoverStopResult^>^ StopAsync();
-    // Call the Automatic method
-    Windows::Foundation::IAsyncOperation<RoverAutomaticResult^>^ AutomaticAsync();
+    // Call the Autonomous method
+    Windows::Foundation::IAsyncOperation<RoverAutonomousResult^>^ AutonomousAsync();
     // Call the Manual method
     Windows::Foundation::IAsyncOperation<RoverManualResult^>^ ManualAsync();
 

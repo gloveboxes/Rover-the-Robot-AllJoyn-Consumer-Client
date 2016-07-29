@@ -132,7 +132,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\RoverLibrary\RoverLibrary.vcxproj">
-      <Project>{555550B3-3157-474A-88F3-60F076E97165}</Project>
+      <Project>{c1a0114d-7f23-407e-8afd-d657a7d37c99}</Project>
       <Name>RoverLibrary</Name>
     </ProjectReference>
   </ItemGroup>

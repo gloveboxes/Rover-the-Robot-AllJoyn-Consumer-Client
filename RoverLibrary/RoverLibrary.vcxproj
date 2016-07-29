@@ -27,7 +27,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{555550b3-3157-474a-88f3-60f076e97165}</ProjectGuid>
+    <ProjectGuid>{c1a0114d-7f23-407e-8afd-d657a7d37c99}</ProjectGuid>
     <Keyword>WindowsRuntimeComponent</Keyword>
     <ProjectName>RoverLibrary</ProjectName>
     <RootNamespace>org.alljoyn.example.Rover</RootNamespace>

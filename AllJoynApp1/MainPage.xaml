@@ -18,10 +18,28 @@
             <RowDefinition Height="*" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
-        <Button x:Name="button1" Content="⏵" HorizontalAlignment="Center" Grid.Column="1" Grid.Row="0" VerticalAlignment="Center" FontSize="160" Click="FowardButton_Click" Background="{x:Null}" VerticalContentAlignment="Top" IsEnabled="False"/>
-        <Button x:Name="StopButton" Content="⏹" HorizontalAlignment="Center" Grid.Column="1" Grid.Row="2" VerticalAlignment="Center" FontSize="160" Click="StopButton_Click_1" Background="{x:Null}" VerticalContentAlignment="Top" IsEnabled="False"/>
-        <Button x:Name="LeftButton" Content="⏪" HorizontalAlignment="Center"  Grid.Column="0" Grid.Row="1" VerticalAlignment="Center" FontSize="160" Click="LeftButton_Click" Background="{x:Null}" VerticalContentAlignment="Top" IsEnabled="False"/>
-        <Button x:Name="RightButton" Content="⏩" HorizontalAlignment="Center" Grid.Column="2" Grid.Row="1" VerticalAlignment="Center" FontSize="160" Click="RightButton_Click" Background="{x:Null}" VerticalContentAlignment="Top" IsEnabled="False"/>
+        <Button x:Name="button1" HorizontalAlignment="Center" Grid.Column="1" Grid.Row="0" VerticalAlignment="Center" FontSize="160" Click="FowardButton_Click" Background="{x:Null}" VerticalContentAlignment="Top" IsEnabled="False">
+            <StackPanel>
+                <Polygon Points="0,80 50,0 100,80 " Stroke="Black" Fill="Black" />
+                <TextBlock FontSize="20" HorizontalAlignment="Center" Margin="10" Text="Forward"/>
+            </StackPanel>
+        </Button>
+        <Button x:Name="StopButton"  HorizontalAlignment="Center" Grid.Column="1" Grid.Row="1" VerticalAlignment="Center" FontSize="160" Click="StopButton_Click_1" Background="{x:Null}" VerticalContentAlignment="Top" IsEnabled="False">
+            <Polygon Points="0,0 100,0 100,100, 0,100 " Stroke="Black" Fill="Black" />
+        </Button>
+        <Button x:Name="LeftButton" HorizontalAlignment="Center"  Grid.Column="0" Grid.Row="1" VerticalAlignment="Center" FontSize="160" Click="LeftButton_Click" Background="{x:Null}" VerticalContentAlignment="Top" IsEnabled="False">
+            <Polygon Points="80,0 80,100, 0,50" Stroke="Black" Fill="Black" />
+        </Button>
+        <Button x:Name="RightButton"  HorizontalAlignment="Center" Grid.Column="2" Grid.Row="1" VerticalAlignment="Center" FontSize="160" Click="RightButton_Click" Background="{x:Null}" VerticalContentAlignment="Top" IsEnabled="False">
+            <Polygon Points="0,0 80,50, 0,100" Stroke="Black" Fill="Black" />
+        </Button>
+        <Button x:Name="Reverse"  HorizontalAlignment="Center" Grid.Column="1" Grid.Row="2" VerticalAlignment="Center" FontSize="160" Click="ReverseButton_Click" Background="{x:Null}" VerticalContentAlignment="Top" IsEnabled="False"  >
+            <StackPanel>
+                <TextBlock FontSize="20" HorizontalAlignment="Center" Margin="10">Reverse</TextBlock>
+                <Polygon Points="0,0 100,0 50,80 " Stroke="Black" Fill="Black" />
+            </StackPanel>
+        </Button>
+
         <ToggleSwitch x:Name="Autonomous" Header="Autonomous" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="0" Grid.Row="2" FontSize="32" Toggled="Autonomous_Toggled" IsEnabled="False"/>
 
     </Grid>

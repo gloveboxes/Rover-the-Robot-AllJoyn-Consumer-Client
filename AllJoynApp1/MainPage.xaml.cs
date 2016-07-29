@@ -16,31 +16,33 @@ namespace RoverAllJoyn
     /// </summary>
     public sealed partial class MainPage : Page
     {
-        RoverConsumer makerConsumer = null;
+        AllJoynBusAttachment roverBusAttachment = new AllJoynBusAttachment();
+        RoverWatcher roverWatcher;
+        RoverConsumer roverConsumer = null;
 
         public MainPage()
         {
             this.InitializeComponent();
 
-            AllJoynBusAttachment makerBusAttachment = new AllJoynBusAttachment();
-            RoverWatcher makerWatcher = new RoverWatcher(makerBusAttachment);
+            roverWatcher = new RoverWatcher(roverBusAttachment);
 
-            makerWatcher.Added += MakerWatcher_Added;
-            makerWatcher.Start();
+            roverWatcher.Added += RoverWatcher_Added;
+            roverWatcher.Start();
         }
 
-        private async void MakerWatcher_Added(RoverWatcher sender, AllJoynServiceInfo args)
+        private async void RoverWatcher_Added(RoverWatcher sender, AllJoynServiceInfo args)
         {
             RoverJoinSessionResult joinSessionResult = await RoverConsumer.JoinSessionAsync(args, sender);
 
             if (joinSessionResult.Status == AllJoynStatus.Ok)
             {
-                makerConsumer = joinSessionResult.Consumer;
+                roverConsumer = joinSessionResult.Consumer;
 
                 button1.IsEnabled = true;
                 StopButton.IsEnabled = true;
                 LeftButton.IsEnabled = true;
                 RightButton.IsEnabled = true;
+                Reverse.IsEnabled = true;
                 Autonomous.IsEnabled = true;
             }
         }
@@ -48,23 +50,28 @@ namespace RoverAllJoyn
 
         private async void LeftButton_Click(object sender, RoutedEventArgs e)
         {
-            await makerConsumer.LeftAsync();
+            await roverConsumer.LeftAsync();
         }
 
         private async void RightButton_Click(object sender, RoutedEventArgs e)
         {
-            await makerConsumer.RightAsync();
+            await roverConsumer.RightAsync();
         }
 
         private async void FowardButton_Click(object sender, RoutedEventArgs e)
         {
 
-            await makerConsumer.ForwardAsync();
+            await roverConsumer.ForwardAsync();
+        }
+
+        private async void ReverseButton_Click(object sender, RoutedEventArgs e)
+        {
+            await roverConsumer.BackwardAsync();
         }
 
         private async void StopButton_Click_1(object sender, RoutedEventArgs e)
         {
-            await makerConsumer.StopAsync();
+            await roverConsumer.StopAsync();
         }
 
 
@@ -75,13 +82,13 @@ namespace RoverAllJoyn
             {
                 if (toggleSwitch.IsOn == true)
                 {
-                    await makerConsumer.AutomaticAsync();
+                    await roverConsumer.AutonomousAsync();
                 }
                 else
                 {
-                    await makerConsumer.ManualAsync();
+                    await roverConsumer.ManualAsync();
                     await Task.Delay(1000);
-                    await makerConsumer.StopAsync();
+                    await roverConsumer.StopAsync();
                    
                 }
             }

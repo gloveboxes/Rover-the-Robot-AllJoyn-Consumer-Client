@@ -251,11 +251,11 @@ IAsyncOperation<RoverStopResult^>^ RoverConsumer::StopAsync()
         return result;
     });
 }
-IAsyncOperation<RoverAutomaticResult^>^ RoverConsumer::AutomaticAsync()
+IAsyncOperation<RoverAutonomousResult^>^ RoverConsumer::AutonomousAsync()
 {
-    return create_async([this]() -> RoverAutomaticResult^
+    return create_async([this]() -> RoverAutonomousResult^
     {
-        auto result = ref new RoverAutomaticResult();
+        auto result = ref new RoverAutonomousResult();
         
         alljoyn_message message = alljoyn_message_create(m_nativeBusAttachment);
         size_t argCount = 0;
@@ -267,7 +267,7 @@ IAsyncOperation<RoverAutomaticResult^>^ RoverConsumer::AutomaticAsync()
             status = alljoyn_proxybusobject_methodcall(
                 ProxyBusObject,
                 "org.alljoyn.example.Rover",
-                "Automatic",
+                "Autonomous",
                 inputs,
                 argCount,
                 message,

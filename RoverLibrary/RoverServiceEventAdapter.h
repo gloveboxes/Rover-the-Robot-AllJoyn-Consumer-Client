@@ -135,24 +135,24 @@ public:
         } 
     }
 
-    event Windows::Foundation::TypedEventHandler<RoverServiceEventAdapter^, RoverAutomaticCalledEventArgs^>^ AutomaticCalled 
+    event Windows::Foundation::TypedEventHandler<RoverServiceEventAdapter^, RoverAutonomousCalledEventArgs^>^ AutonomousCalled 
     { 
-        Windows::Foundation::EventRegistrationToken add(Windows::Foundation::TypedEventHandler<RoverServiceEventAdapter^, RoverAutomaticCalledEventArgs^>^ handler) 
+        Windows::Foundation::EventRegistrationToken add(Windows::Foundation::TypedEventHandler<RoverServiceEventAdapter^, RoverAutonomousCalledEventArgs^>^ handler) 
         { 
-            return _AutomaticCalled += ref new Windows::Foundation::EventHandler<Platform::Object^>
+            return _AutonomousCalled += ref new Windows::Foundation::EventHandler<Platform::Object^>
             ([handler](Platform::Object^ sender, Platform::Object^ args)
             {
-                handler->Invoke(safe_cast<RoverServiceEventAdapter^>(sender), safe_cast<RoverAutomaticCalledEventArgs^>(args));
+                handler->Invoke(safe_cast<RoverServiceEventAdapter^>(sender), safe_cast<RoverAutonomousCalledEventArgs^>(args));
             }, Platform::CallbackContext::Same);
         } 
         void remove(Windows::Foundation::EventRegistrationToken token) 
         { 
-            _AutomaticCalled -= token; 
+            _AutonomousCalled -= token; 
         } 
     internal: 
-        void raise(RoverServiceEventAdapter^ sender, RoverAutomaticCalledEventArgs^ args) 
+        void raise(RoverServiceEventAdapter^ sender, RoverAutonomousCalledEventArgs^ args) 
         { 
-            _AutomaticCalled(sender, args);
+            _AutonomousCalled(sender, args);
         } 
     }
 
@@ -185,7 +185,7 @@ public:
     virtual Windows::Foundation::IAsyncOperation<RoverForwardResult^>^ ForwardAsync(_In_ Windows::Devices::AllJoyn::AllJoynMessageInfo^ info);
     virtual Windows::Foundation::IAsyncOperation<RoverBackwardResult^>^ BackwardAsync(_In_ Windows::Devices::AllJoyn::AllJoynMessageInfo^ info);
     virtual Windows::Foundation::IAsyncOperation<RoverStopResult^>^ StopAsync(_In_ Windows::Devices::AllJoyn::AllJoynMessageInfo^ info);
-    virtual Windows::Foundation::IAsyncOperation<RoverAutomaticResult^>^ AutomaticAsync(_In_ Windows::Devices::AllJoyn::AllJoynMessageInfo^ info);
+    virtual Windows::Foundation::IAsyncOperation<RoverAutonomousResult^>^ AutonomousAsync(_In_ Windows::Devices::AllJoyn::AllJoynMessageInfo^ info);
     virtual Windows::Foundation::IAsyncOperation<RoverManualResult^>^ ManualAsync(_In_ Windows::Devices::AllJoyn::AllJoynMessageInfo^ info);
 
 
@@ -196,7 +196,7 @@ private:
     event Windows::Foundation::EventHandler<Platform::Object^>^ _ForwardCalled;
     event Windows::Foundation::EventHandler<Platform::Object^>^ _BackwardCalled;
     event Windows::Foundation::EventHandler<Platform::Object^>^ _StopCalled;
-    event Windows::Foundation::EventHandler<Platform::Object^>^ _AutomaticCalled;
+    event Windows::Foundation::EventHandler<Platform::Object^>^ _AutonomousCalled;
     event Windows::Foundation::EventHandler<Platform::Object^>^ _ManualCalled;
 };
 

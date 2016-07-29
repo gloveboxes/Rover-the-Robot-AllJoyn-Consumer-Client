@@ -201,7 +201,7 @@ private:
     static void CallForwardHandler(_Inout_ alljoyn_busobject busObject, _In_ alljoyn_message message);
     static void CallBackwardHandler(_Inout_ alljoyn_busobject busObject, _In_ alljoyn_message message);
     static void CallStopHandler(_Inout_ alljoyn_busobject busObject, _In_ alljoyn_message message);
-    static void CallAutomaticHandler(_Inout_ alljoyn_busobject busObject, _In_ alljoyn_message message);
+    static void CallAutonomousHandler(_Inout_ alljoyn_busobject busObject, _In_ alljoyn_message message);
     static void CallManualHandler(_Inout_ alljoyn_busobject busObject, _In_ alljoyn_message message);
       
     // Register a callback function to handle methods.

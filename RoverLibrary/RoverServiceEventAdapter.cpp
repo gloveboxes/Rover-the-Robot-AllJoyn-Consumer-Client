@@ -69,11 +69,11 @@ IAsyncOperation<RoverStopResult^>^ RoverServiceEventAdapter::StopAsync(_In_ AllJ
     return RoverStopCalledEventArgs::GetResultAsync(args);
 }
 
-IAsyncOperation<RoverAutomaticResult^>^ RoverServiceEventAdapter::AutomaticAsync(_In_ AllJoynMessageInfo^ info)
+IAsyncOperation<RoverAutonomousResult^>^ RoverServiceEventAdapter::AutonomousAsync(_In_ AllJoynMessageInfo^ info)
 {
-    auto args = ref new RoverAutomaticCalledEventArgs(info);
-    AutomaticCalled(this, args);
-    return RoverAutomaticCalledEventArgs::GetResultAsync(args);
+    auto args = ref new RoverAutonomousCalledEventArgs(info);
+    AutonomousCalled(this, args);
+    return RoverAutonomousCalledEventArgs::GetResultAsync(args);
 }
 
 IAsyncOperation<RoverManualResult^>^ RoverServiceEventAdapter::ManualAsync(_In_ AllJoynMessageInfo^ info)

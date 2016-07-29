@@ -176,7 +176,7 @@ private:
     int32 m_status;
 };
 
-public ref class RoverAutomaticResult sealed
+public ref class RoverAutonomousResult sealed
 {
 public:
     property int32 Status
@@ -187,17 +187,17 @@ public:
     }
 
     
-    static RoverAutomaticResult^ CreateSuccessResult()
+    static RoverAutonomousResult^ CreateSuccessResult()
     {
-        auto result = ref new RoverAutomaticResult();
+        auto result = ref new RoverAutonomousResult();
         result->Status = Windows::Devices::AllJoyn::AllJoynStatus::Ok;
         result->m_creationContext = Concurrency::task_continuation_context::use_current();
         return result;
     }
     
-    static RoverAutomaticResult^ CreateFailureResult(_In_ int32 status)
+    static RoverAutonomousResult^ CreateFailureResult(_In_ int32 status)
     {
-        auto result = ref new RoverAutomaticResult();
+        auto result = ref new RoverAutonomousResult();
         result->Status = status;
         return result;
     }

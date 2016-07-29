@@ -344,7 +344,7 @@ void RoverProducer::CallStopHandler(_Inout_ alljoyn_busobject busObject, _In_ al
     }
 }
 
-void RoverProducer::CallAutomaticHandler(_Inout_ alljoyn_busobject busObject, _In_ alljoyn_message message)
+void RoverProducer::CallAutonomousHandler(_Inout_ alljoyn_busobject busObject, _In_ alljoyn_message message)
 {
     auto source = SourceObjects.find(busObject);
     if (source == SourceObjects.end())
@@ -358,7 +358,7 @@ void RoverProducer::CallAutomaticHandler(_Inout_ alljoyn_busobject busObject, _I
         AllJoynMessageInfo^ callInfo = ref new AllJoynMessageInfo(AllJoynHelpers::MultibyteToPlatformString(alljoyn_message_getsender(message)));
 
 
-        RoverAutomaticResult^ result = create_task(producer->Service->AutomaticAsync(callInfo)).get();
+        RoverAutonomousResult^ result = create_task(producer->Service->AutonomousAsync(callInfo)).get();
         create_task([](){}).then([=]
         {
             int32 status;
@@ -553,8 +553,8 @@ void RoverProducer::Start()
 
     result = AddMethodHandler(
         interfaceDescription, 
-        "Automatic", 
-        [](alljoyn_busobject busObject, const alljoyn_interfacedescription_member* member, alljoyn_message message) { UNREFERENCED_PARAMETER(member); CallAutomaticHandler(busObject, message); });
+        "Autonomous", 
+        [](alljoyn_busobject busObject, const alljoyn_interfacedescription_member* member, alljoyn_message message) { UNREFERENCED_PARAMETER(member); CallAutonomousHandler(busObject, message); });
     if (result != ER_OK)
     {
         StopInternal(result);
@@ -639,7 +639,7 @@ int32 RoverProducer::RemoveMemberFromSession(_In_ String^ uniqueName)
 
 PCSTR org::alljoyn::example::Rover::c_RoverIntrospectionXml = "<interface name=\"org.alljoyn.example.Rover\">"
 "  <annotation name=\"org.alljoyn.Bus.Secure\" value=\"false\" />"
-"  <description language=\"en\">Example interface for controlling a robot</description>"
+"  <description language=\"en\">Interface for controlling a rover robot</description>"
 "  <method name=\"Left\">"
 "    <description language=\"en\">Turn Left</description>"
 "  </method>"
@@ -655,11 +655,11 @@ PCSTR org::alljoyn::example::Rover::c_RoverIntrospectionXml = "<interface name=\
 "  <method name=\"Stop\">"
 "    <description language=\"en\">Stop</description>"
 "  </method>"
-"  <method name=\"Automatic\">"
-"    <description language=\"en\">Start toasting</description>"
+"  <method name=\"Autonomous\">"
+"    <description language=\"en\">Autonomous</description>"
 "  </method>"
 "  <method name=\"Manual\">"
-"    <description language=\"en\">Start toasting</description>"
+"    <description language=\"en\">Manual</description>"
 "  </method>"
 "</interface>"
 ;

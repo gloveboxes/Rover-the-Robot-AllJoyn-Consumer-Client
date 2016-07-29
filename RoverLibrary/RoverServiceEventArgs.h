@@ -229,29 +229,29 @@ private:
     RoverStopResult^ m_result;
 };
 
-public ref class RoverAutomaticCalledEventArgs sealed
+public ref class RoverAutonomousCalledEventArgs sealed
 {
 public:
-    RoverAutomaticCalledEventArgs(_In_ Windows::Devices::AllJoyn::AllJoynMessageInfo^ info);
+    RoverAutonomousCalledEventArgs(_In_ Windows::Devices::AllJoyn::AllJoynMessageInfo^ info);
 
     property Windows::Devices::AllJoyn::AllJoynMessageInfo^ MessageInfo
     {
         Windows::Devices::AllJoyn::AllJoynMessageInfo^ get() { return m_messageInfo; }
     }
 
-    property RoverAutomaticResult^ Result
+    property RoverAutonomousResult^ Result
     {
-        RoverAutomaticResult^ get() { return m_result; }
-        void set(_In_ RoverAutomaticResult^ value) { m_result = value; }
+        RoverAutonomousResult^ get() { return m_result; }
+        void set(_In_ RoverAutonomousResult^ value) { m_result = value; }
     }
 
     Windows::Foundation::Deferral^ GetDeferral();
 
-    static Windows::Foundation::IAsyncOperation<RoverAutomaticResult^>^ GetResultAsync(RoverAutomaticCalledEventArgs^ args)
+    static Windows::Foundation::IAsyncOperation<RoverAutonomousResult^>^ GetResultAsync(RoverAutonomousCalledEventArgs^ args)
     {
         args->InvokeAllFinished();
         auto t = concurrency::create_task(args->m_tce);
-        return concurrency::create_async([t]() -> concurrency::task<RoverAutomaticResult^>
+        return concurrency::create_async([t]() -> concurrency::task<RoverAutonomousResult^>
         {
             return t;
         });
@@ -264,10 +264,10 @@ private:
 
     bool m_raised;
     int m_completionsRequired;
-    concurrency::task_completion_event<RoverAutomaticResult^> m_tce;
+    concurrency::task_completion_event<RoverAutonomousResult^> m_tce;
     std::mutex m_lock;
     Windows::Devices::AllJoyn::AllJoynMessageInfo^ m_messageInfo;
-    RoverAutomaticResult^ m_result;
+    RoverAutonomousResult^ m_result;
 };
 
 public ref class RoverManualCalledEventArgs sealed

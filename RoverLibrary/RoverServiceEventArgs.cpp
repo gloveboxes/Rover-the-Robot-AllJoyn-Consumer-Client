@@ -406,16 +406,16 @@ void RoverStopCalledEventArgs::InvokeCompleteHandler()
     }
 }
 
-RoverAutomaticCalledEventArgs::RoverAutomaticCalledEventArgs(
+RoverAutonomousCalledEventArgs::RoverAutonomousCalledEventArgs(
     _In_ AllJoynMessageInfo^ info)
     : m_raised(false),
     m_completionsRequired(0),
     m_messageInfo(info)
 {
-	m_result = RoverAutomaticResult::CreateFailureResult(ER_NOT_IMPLEMENTED);
+	m_result = RoverAutonomousResult::CreateFailureResult(ER_NOT_IMPLEMENTED);
 }
 
-Deferral^ RoverAutomaticCalledEventArgs::GetDeferral()
+Deferral^ RoverAutonomousCalledEventArgs::GetDeferral()
 {
     std::lock_guard<std::mutex> lockGuard(m_lock);
     if (m_raised)
@@ -425,11 +425,11 @@ Deferral^ RoverAutomaticCalledEventArgs::GetDeferral()
     }
 
     m_completionsRequired++;
-    auto handler = ref new DeferralCompletedHandler(this, &RoverAutomaticCalledEventArgs::Complete);
+    auto handler = ref new DeferralCompletedHandler(this, &RoverAutonomousCalledEventArgs::Complete);
     return ref new Deferral(handler);
 }
 
-void RoverAutomaticCalledEventArgs::InvokeAllFinished()
+void RoverAutonomousCalledEventArgs::InvokeAllFinished()
 {
     bool invokeNeeded;
 
@@ -446,7 +446,7 @@ void RoverAutomaticCalledEventArgs::InvokeAllFinished()
     }
 }
 
-void RoverAutomaticCalledEventArgs::Complete()
+void RoverAutonomousCalledEventArgs::Complete()
 {
     bool invokeNeeded;
 
@@ -469,11 +469,11 @@ void RoverAutomaticCalledEventArgs::Complete()
     }
 }
 
-void RoverAutomaticCalledEventArgs::InvokeCompleteHandler()
+void RoverAutonomousCalledEventArgs::InvokeCompleteHandler()
 {
     if (m_result->Status == ER_NOT_IMPLEMENTED)
     {
-        throw Exception::CreateException(E_NOTIMPL, "No handlers are registered for AutomaticCalled.");
+        throw Exception::CreateException(E_NOTIMPL, "No handlers are registered for AutonomousCalled.");
     }
     else
     {

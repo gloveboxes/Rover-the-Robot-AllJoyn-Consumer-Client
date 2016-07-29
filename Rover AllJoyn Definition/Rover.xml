@@ -1,0 +1,34 @@
+<node name="/rover">
+  <interface name="org.alljoyn.example.Rover">
+    <annotation name="org.alljoyn.Bus.Secure" value="false"/>
+    <description language="en">Interface for controlling a rover robot</description>
+   
+    <method name="Left">
+      <description language="en">Turn Left</description>
+    </method>
+
+    <method name="Right">
+      <description language="en">Turn Right</description>
+    </method>
+
+    <method name="Forward">
+      <description language="en">Forwards</description>
+    </method>
+
+    <method name="Backward">
+      <description language="en">Backwards</description>
+    </method>
+
+    <method name="Stop">
+      <description language="en">Stop</description>
+    </method>
+
+    <method name="Autonomous">
+      <description language="en">Autonomous</description>
+    </method>
+
+    <method name="Manual">
+      <description language="en">Manual</description>
+    </method>
+  </interface>
+</node>

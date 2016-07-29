@@ -30,8 +30,8 @@ public:
     // Implement this function to handle calls to the Stop method.
     Windows::Foundation::IAsyncOperation<RoverStopResult^>^ StopAsync(_In_ Windows::Devices::AllJoyn::AllJoynMessageInfo^ info );
 
-    // Implement this function to handle calls to the Automatic method.
-    Windows::Foundation::IAsyncOperation<RoverAutomaticResult^>^ AutomaticAsync(_In_ Windows::Devices::AllJoyn::AllJoynMessageInfo^ info );
+    // Implement this function to handle calls to the Autonomous method.
+    Windows::Foundation::IAsyncOperation<RoverAutonomousResult^>^ AutonomousAsync(_In_ Windows::Devices::AllJoyn::AllJoynMessageInfo^ info );
 
     // Implement this function to handle calls to the Manual method.
     Windows::Foundation::IAsyncOperation<RoverManualResult^>^ ManualAsync(_In_ Windows::Devices::AllJoyn::AllJoynMessageInfo^ info );
